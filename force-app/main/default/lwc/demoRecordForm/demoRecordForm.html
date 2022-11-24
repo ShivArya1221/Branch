@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Contact Information" icon-name="standard:contact">
+        <lightning-record-form  
+        object-api-name={contactRecord}
+        record-id={recordId}
+       fields={fields}
+       onsuccess={message}
+        columns="2"
+        mode="edit">
+        </lightning-record-form>
+    </lightning-card>
+</template>

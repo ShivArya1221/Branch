@@ -1,0 +1,11 @@
+<template>
+    <lightning-card>
+        <select>
+            <template for:each={result.data} for:item="obj">
+                <option key={obj.QualifiedApiName} value={obj.QualifiedApiName}>
+                        {obj.QualifiedApiName}
+                </option>
+            </template>
+        </select>
+    </lightning-card>
+</template>

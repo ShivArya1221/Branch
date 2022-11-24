@@ -1,0 +1,26 @@
+<aura:component controller="Aura_sheet_Q2_cls">
+    <aura:attribute name="InsertAcc" type="account[]" />
+    <aura:attribute name="InsertCon" type="contact[]" />
+    <aura:attribute name="Insertoop" type="Opportunity[]" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doAction}" />
+    
+    <lightning:select name="select1" label="Account" onchange="{!c.getContactOpp}" aura:id="accId">
+        <aura:iteration items="{!v.InsertAcc}" var="acc" >
+            <option value="{!acc.Id}">{!acc.Name}</option>
+        </aura:iteration>  
+    </lightning:select>
+    
+    <lightning:select name="select2" label="contact" >
+        <aura:iteration items="{!v.InsertCon}" var="con" >
+            <option value="{!con.Id}">{!con.Name}</option>
+        </aura:iteration>  
+    </lightning:select>
+
+    <lightning:select name="select3" label="Opportunity" >
+        <aura:iteration items="{!v.Insertoop}" var="oop" >
+            <option value="{!oop.Id}">{!oop.Name}</option>
+        </aura:iteration>  
+    </lightning:select>
+    
+</aura:component>

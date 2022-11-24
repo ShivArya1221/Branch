@@ -1,0 +1,18 @@
+<aura:component controller="Aura_sheet_Q8_cls">
+    <aura:attribute name="conObj" type="contact" default="{'sObjectType':'Contact'}"/>
+    
+    <aura:attribute name="InsertAcc" type="Account[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doAction}" />
+    
+     <lightning:input type="string" value="{!v.conObj.firstName}" label="Enter First name" />
+     <lightning:input type="string" value="{!v.conObj.lastName}" label="Enter Last name" />
+    
+      <lightning:select name="select1" label="Account" value="{!v.conObj.AccountId}">
+        <aura:iteration items="{!v.InsertAcc}" var="acc" >
+            <option value="{!acc.Id}">{!acc.Name}</option>
+        </aura:iteration>  
+    </lightning:select>
+    <br></br>
+    
+      <lightning:button label="Insert" value="Insert" onClick="{!c.contactCreate}" />
+</aura:component>

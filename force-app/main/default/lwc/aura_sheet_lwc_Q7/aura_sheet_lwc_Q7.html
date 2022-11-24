@@ -1,0 +1,10 @@
+<template>
+    <div class="slds-p-around_small">
+    <lightning-card title="Create Contact For LogIN" icon-name="standard:contact" class="slds-m-around_xx-small">
+        <lightning-record-form object-api-name={contactObject} fields={myFields} onsuccess={handleContactCreated}
+            columns="1">
+        </lightning-record-form>
+    </lightning-card>
+</div>
+
+</template>

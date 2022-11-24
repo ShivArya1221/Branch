@@ -1,0 +1,208 @@
+<template>
+
+    <!-- <lightning-card  > -->
+    <div
+        style="text-align:center; font-size:30px; font-family: Times New Roman, Times, serif; background-color:DodgerBlue;">
+        <h1>Opportunity Data</h1>
+    </div>
+
+
+
+    <div class=" slds-table--header-fixed_container slds" style="height:400px; " role="grid">
+        <div class="slds-scrollable_y" style="width: 100%">
+            <table class="slds-table slds-table--header-fixed slds-table_bordered slds-table_col-bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col" style="border:1px black solid; text-align: center; ">
+                            <div class="slds-truncate slds-cell-fixed slds-align_absolute-center "
+                                title="Opportunity Name">Opportunity Name</div>
+                        </th>
+                        <th class="" scope="col" style="border:1px black solid; text-align: center; ">
+                            <div class="slds-truncate slds-cell-fixed slds-align_absolute-center" title="Account Name">
+                                Account Name</div>
+                        </th>
+                        <th class="" scope="col" style="border:1px black solid; text-align: center; ">
+                            <div class="slds-truncate slds-cell-fixed slds-align_absolute-center " title="Close Date">
+                                Close Date</div>
+                        </th>
+                        <th class="slds-grid" scope="col" style="border:1px black solid; ">
+                            <div class="slds-grid slds-cell-fixed ">
+                                <div class="slds-truncate slds-align_absolute-center" title="Stage Name">Stage Name
+                                </div>
+                                <div class="slds-m-left_xxx-small ">
+                                    <lightning-button-icon icon-name="utility:chevrondown" onclick={showOptons}>
+                                    </lightning-button-icon>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="" scope="col" style="border:1px black solid; text-align: center; ">
+                            <div class="slds-truncate slds-cell-fixed  slds-align_absolute-center" title="Close Date">
+                                Drop Down</div>
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <template for:each={data} for:item="opp">
+                        <tr key={opp.Id} class="slds-hint-parent " style="background-color:#D6EEEE; ">
+                            <td>
+                                {opp.Name}
+                            </td>
+                            <td>
+                                {opp.Account.Name}
+                            </td>
+                            <td>
+                                {opp.CloseDate}
+                            </td>
+                            <td>
+                                {opp.StageName}
+
+                            </td>
+                            <td>
+                                <!-- <lightning-button-icon icon-name="utility:chevrondown" onchange={handleChange} options={options}  value={value}>
+                            </lightning-button-icon> -->
+
+                                <!-- <lightning-combobox value={placevalue} placeholder="" variant="label-hidden " name={opp.Id} options={comboptions} onchange={editChange} >
+                            </lightning-combobox> -->
+
+                                <div class="slds-m-around_xx-small lgc-bg">
+                                    <lightning-button-menu name={opp.Id} alternative-text="Show menu"
+                                        menu-alignment="auto" onselect={editChange}>
+                                        <lightning-menu-item value="Edit" label="Edit"></lightning-menu-item>
+                                        <lightning-menu-item value="ChangeStage" label="Change Stage">
+                                        </lightning-menu-item>
+                                        <lightning-menu-item value="Delete" label="Delete"></lightning-menu-item>
+                                        <lightning-menu-item value="View" label="View"></lightning-menu-item>
+
+                                    </lightning-button-menu>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </template>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <!-- <lightning-card title="Opportunity Data">
+        <lightning-datatable data={data}  key-field="Id">
+        </lightning-datatable>-->
+
+    <template if:true={buttonClick}>
+
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container"
+                style="margin-left: 655px; margin-top: 70px; height: 600px; width: 180px;">
+
+                <div class="slds-modal__content slds-p-around_medium" style="width: 200px; ">
+                    <lightning-input label="All Record" type="checkbox" onchange={checkboxchange}></lightning-input>
+                    <template if:false={allValue}>
+                        <template for:each={options} for:item="opt">
+                            <lightning-input key={opt} label={opt} type="checkbox" onchange={checkboxchange}>
+                            </lightning-input>
+                        </template>
+                    </template>
+                    <template if:true={allValue}>
+                        <template for:each={options} for:item="opt">
+                            <lightning-input key={opt} label={opt} type="checkbox" onchange={checkboxchange} checked>
+                            </lightning-input>
+                        </template>
+                    </template>
+                </div>
+
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer" style="width:180px">
+                    <button class="slds-button slds-button_neutral" onclick={okHandler}>Ok</button>
+
+                    <button class="slds-button slds-button_neutral" onclick={cancelHandler}>Cancel</button>
+                </footer>
+
+            </div>
+        </section>
+    </template>
+
+    <!-- </lightning-card> -->
+    
+    <!-- <div if:false={isLoaded} >
+        <lightning-spinner alternative-text="Loading" size="large">
+            <div role="status" class="slds-spinner slds-spinner_medium"> -->
+                <template if:true={editrecord}>
+
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container" style=" margin-top: 70px; height: 600px; width:600px;">
+
+                            <div class="slds-modal__content slds-p-around_medium" style="width: 600px; height:600px;">
+
+                                <lightning-record-form object-api-name="Opportunity" record-id={recordId}
+                                    layout-type="Full" columns="2" mode="edit" onsubmit={onsave} oncancel={oncancel}>
+                                </lightning-record-form>
+
+                            </div>
+                        </div>
+
+                    </section>
+
+
+              </template>
+            <!-- </div>
+        </lightning-spinner>
+
+    </div> -->
+
+
+    <!-- modal footer start-->
+    <template if:true={editStage}>
+
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container"
+                style="margin-left: 655px; margin-top: 70px; height: 500px; width: 200px;">
+
+                <div class="slds-modal__content slds-p-around_medium" style="width: 200px; height: 500px">
+                    <lightning-combobox options={newStageOption} label="Stage" onchange={stageChange}>
+                    </lightning-combobox>
+
+                </div>
+
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer" style="width:180px">
+                    <button class="slds-button slds-button_neutral" onclick={onok}>Ok</button>
+
+                    <button class="slds-button slds-button_neutral" onclick={oncancel}>Cancel</button>
+                </footer>
+            </div>
+        </section>
+    </template>
+
+
+
+    <template if:false={editrecord}>
+    </template>
+
+    <template if:true={viewRecord}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" style=" margin-top: 70px; height: 600px; width:600px;">
+
+                <div class="slds-modal__content slds-p-around_medium" style="width: 600px; height:600px;">
+
+                    <lightning-record-form object-api-name="Opportunity" record-id={recordId} layout-type="Full"
+                        mode="readonly" columns="2" onsuccess={onsave} oncancel={oncancel}>
+                    </lightning-record-form>
+
+                </div>
+                <footer class="slds-modal__footer" style="width:600px">
+                    <button class="slds-button slds-button_neutral" onclick={cancelHandler}>Cancel</button>
+                </footer>
+            </div>
+        </section>
+    </template>
+    <template if:false={viewRecord}></template>
+</template>

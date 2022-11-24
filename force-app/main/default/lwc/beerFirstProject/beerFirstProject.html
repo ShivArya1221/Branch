@@ -1,0 +1,90 @@
+<template>
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate" title="Wine Shop - Dehradun">
+                                        <lightning-icon icon-name="action:preview" alternative-text="preview"
+                                            title="Wine"></lightning-icon>Wine Shop- Dehradun
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p class="slds-page-header__name-meta" style="margin-left: 50px;">
+                                   Near Doon Park • Unlimited Wine</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+
+        <lightning-layout multiple-rows vertical-align="end">
+            <lightning-layout-item size="12" small-device-size="10" medium-device-size="8" large-device-size="6"
+                padding="around-small">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning-input type="search" label="Enter Wine Name"   onchange={handleWineName}>
+                        </lightning-input>
+                        <br />
+                        <button class="slds-button slds-button_success" onclick={handler}>ADD WINE </button>
+                        <br/>
+                        <button class="slds-button slds-button_success" name="deleteBeer" onclick={deletehandler}>DELETE WINE </button>
+                    </div>
+                </div>
+            </lightning-layout-item>
+                 <lightning-layout-item size="12" small-device-size="2" medium-device-size="2" large-device-size="2"
+                                         padding="around-small">
+                </lightning-layout-item>
+            </lightning-layout>
+        
+        <br/>
+
+
+        <template if:false={showComp}>
+        
+            <div class="slds-grid slds-wrap">
+   
+            <template for:each={beerData} for:item="item">
+                <div key={item.Id} class=" slds-col slds-size_1-of-4 slds-m-around_medium slds-card_boundary">
+                    <lightning-card title={item.Name} icon-name="custom:custom56" onclick={beerDetails}>
+                        <div class="slds-grid slds-m-around_small slds-wrap">
+                            <div>
+                                <img src={beer} />
+                            </div>
+                                <div class="slds-m-left_medium" style="float:left" >
+                                    <strong>Price-: {item.Price__c}</strong>
+                                   
+                                </div>
+                                <div class="slds-float_right slds-m-around_small" >
+                                    <lightning-button-icon icon-name="utility:delete" title="Delete"
+                                        onclick={deletebeer} access-key={item.Id}></lightning-button-icon>
+                                </div>
+                        </div>
+                      
+                    </lightning-card>
+                </div>
+            </template>
+        </div>
+        
+        </template>
+    
+
+        <template if:true={showComp}>
+        
+        <div style="padding-left: 20px; padding-right: 20px;">
+            <lightning-record-form object-api-name="Beer_Shop__c" fields={myFields} oncancel={closeModal} 
+                                   onsuccess={handleBeerCreated} columns="2">
+            </lightning-record-form>
+        </div>
+    
+        </template>
+
+    </div>
+
+</template>

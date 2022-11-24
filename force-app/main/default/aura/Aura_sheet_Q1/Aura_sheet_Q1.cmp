@@ -1,0 +1,10 @@
+<aura:component controller="Aura1">
+    <aura:attribute name="InsertAcc" type="Account" />
+      
+    
+     <lightning:input Name='name' type="String" value="{!v.InsertAcc.Name}" label="Enter Name" />
+     <lightning:input Name='phone' type="String" value="{!v.InsertAcc.Phone}" label="Enter Phone Number" />
+     <lightning:input Name='email' type="String" value="{!v.InsertAcc.Email}" label="Enter Email" />
+      
+	<lightning:button label="insert" onclick="{!c.onClick }" />    
+</aura:component>

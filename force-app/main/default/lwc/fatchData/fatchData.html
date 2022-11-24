@@ -1,0 +1,39 @@
+<template>
+    <div class="slds-p-around_medium">
+    <lightning-card title="Find Account With Contact-Opportunity" icon-name="standard:account">
+        <div class="slds-m-around_x-small">
+        <lightning-input type="search" onchange={handler} label="Enter Account Name"></lightning-input>
+
+     
+        
+<!--     
+        <template for:each={acc} for:item="acc1">
+            <option key={acc1.Id}>{acc1.Name}</option>
+        </template> -->
+        <h1>Account</h1>
+       <select class="slds-select" onchange={selectAccId}>
+        <option value={}>Select Account</option>
+        <template for:each={acc} for:item="acc1">
+            <option key={acc1.Id} value={acc1.Id}>{acc1.Name}</option>
+        </template>
+       </select>
+
+       <h1>Contact</h1>
+       <select class="slds-select">
+        <template for:each={con} for:item="con1">
+            <option key={con1.Id} value={con1.Name}>{con1.Name}</option>
+        </template>
+       </select>
+
+       <h1>Opportunity</h1>
+       <select class="slds-select">
+        <template for:each={opp} for:item="opp1">
+            <option key={opp1.Id} value={opp1.Name}>{opp1.Name}</option>
+        </template>
+       </select>
+       
+    </div>
+
+    </lightning-card>
+</div>
+</template>

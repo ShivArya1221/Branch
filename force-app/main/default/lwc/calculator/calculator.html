@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Simple Calculator">
+
+    <div class="slds-form-element slds-has-error">
+        <lightning-input type="number" name="number1" label="Enter Number 1" onchange={number1handler}></lightning-input>
+        <lightning-input type="number" name="number2" label="Enter Number 2" onchange={number2handler}></lightning-input>
+    </div>
+<br/>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+        <lightning-button variant="success" label="ADD" title="Successful action" onclick={addClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="success" label="SUB" title="Successful action" onclick={subClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="success" label="MUL" title="Successful action" onclick={mulClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="success" label="DIV" title="Successful action" onclick={divClick} class="slds-m-left_x-small"></lightning-button>
+    </div>
+<br/>
+    <b>Your Result: {result}</b>
+    </lightning-card>
+
+    <lightning-card>
+        <c-calc-Child-Component outcome={result}></c-calc-Child-Component>
+    </lightning-card>
+</template>

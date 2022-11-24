@@ -1,0 +1,100 @@
+<template>
+    <lightning-card title="ADD CONTACT INFORMATION" icon-name="standard:contact">
+       
+      
+   <div class="slds-m-left_small"> 
+    <lightning-button label="ADD MORE+ FIELD" variant="brand" id={index} alternative-text="Add Row" title="Add Row" onclick={addRow}></lightning-button>
+   </div>      
+   <template for:each={itemList} for:item="item" for:index="index">
+            <lightning-record-edit-form key={item.id} object-api-name="Contact">
+               
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="12" small-device-size="12" medium-device-size="8" large-device-size="4"
+                        padding="around-small">
+                        <lightning-input-field field-name="FirstName"  required>
+                        </lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="12" medium-device-size="8" large-device-size="4"
+                        padding="around-small">
+                        <lightning-input-field field-name="LastName"  required>
+                        </lightning-input-field>
+                    </lightning-layout-item>
+                    
+                    
+                        <div class="slds-p-top_x-large">
+                            <lightning-button-icon  icon-name="utility:delete" access-key={item.id} id={index}
+                                 title="Delete Row" onclick={removeRow}>
+                            </lightning-button-icon>
+                        </div>
+                    
+                </lightning-layout>
+
+            </lightning-record-edit-form>
+        </template>
+       
+        <lightning-layout>
+            <div class="slds-align_absolute-center">
+                <lightning-button variant="success" onclick={handleClear} name="clearField" label="Clear Field">
+                </lightning-button>
+                <lightning-button variant="success" onclick={handleSubmit} name="Submit" label="Submit">
+                </lightning-button>
+            </div>
+        </lightning-layout>
+    </lightning-card>
+
+    
+</template>
+
+
+
+    <!-- <div class="slds-p-around_small">
+
+        <lightning-card title="Contact Info" icon-name="standard:contact" class="slds-m-around_xx-small">
+            <div>
+                <lightning-button class="slds-m-left_small" onclick={addContact} variant="Brand" label="ADD FIELD+">
+                </lightning-button>
+
+                <div class="c-container">
+
+
+                    <lightning-layout>
+                        <! <template for:each={listContact} for:item="con">
+    <p key={con.} style="display:inline"> -->
+                        <!-- <lightning-layout-item padding="around-small">
+                            <lightning-input label="First Name" name="firstName" onchange={fname}></lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item padding="around-small">
+                            <lightning-input label="Last Name" name="lastName" onchange={lname} required>
+                            </lightning-input>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item size="1">
+                            <div class="slds-p-top_x-large">
+                                <lightning-button-icon icon-name="utility:delete" onclick={deleteHandler}
+                                    title="Delete">
+                                </lightning-button-icon>
+
+                            </div>
+                        </lightning-layout-item> -->
+                        <!-- </p> -->
+                        <!-- </template> -->
+                    <!-- </lightning-layout>
+                    <lightning-layout-item margin="20px" padding="around-small"> -->
+
+                        <!-- <template if:true={contactField}>
+                            <c-givan-by-akash-sir-child></c-givan-by-akash-sir-child>
+                        </template>
+
+                        <template if:false={contactField}>
+
+                        </template> -->
+
+                        <!-- <lightning-button variant="neutral" name="clearField" label="Clear Field"></lightning-button>
+                        <lightning-button variant="neutral" name="saveField" label="Save"></lightning-button>
+                    </lightning-layout-item>
+                </div>
+            </div>
+        </lightning-card>
+
+    </div> --> 
+

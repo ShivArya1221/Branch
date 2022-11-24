@@ -1,0 +1,20 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	<aura:attribute name="name" type="contact[]"/>
+	<aura:attribute name="paswd" type="string"/>
+
+
+    <h1><b>Sing Up page</b></h1>
+    <div class="slds-m-around_x-small">
+    <lightning:input type="string" value="{!v.name.FirstName}" label="Enter your Name" />
+    <lightning:input type="Email" value="{!v.name.Email}" label="Enter your E-mail" />
+    <lightning:input type="Phone" value="{!v.name.Phone}" label="Enter your Phone" />
+    <lightning:input type="text" value="{!v.name.UserName__c}" label="Enter User Name" />
+    <lightning:input type="password" value="{!v.name.Password__c}" label="Enter your Password" />
+    <lightning:input type="password"  value="{!v.paswd.Password__c}" label="plz your confirm your Password" />
+
+    <br/>
+
+    <lightning:button variant="success" label="SignUp" title="Successful action"  class="slds-m-left_x-small"/>
+    
+</div>
+</aura:component>
